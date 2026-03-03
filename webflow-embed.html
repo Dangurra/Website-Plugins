@@ -1,0 +1,40 @@
+<!--
+  Webflow Integration — Albacore Globe
+  =====================================
+
+  SETUP:
+  1. Deploy the `dist/` folder to a static host (Netlify, Vercel, S3, etc.)
+     It contains:
+       - past-missions.iife.js   (564 KB — the app)
+       - past-missions.css       (1.4 KB — styles)
+       - earth-day.webp          (149 KB)
+       - earth-bump.webp         (165 KB)
+       - earth-clouds.webp       (104 KB)
+       - Vector.png              (1 KB)
+
+  2. Replace YOUR_CDN_URL below with your hosted URL
+     e.g. https://albacore-globe.netlify.app
+
+  3. In Webflow:
+     a. Add an HTML Embed element where you want the globe
+     b. Paste the <div> tag below into it
+     c. Go to Page Settings → Custom Code → Before </head>
+        Paste the <link> tag
+     d. Go to Page Settings → Custom Code → Before </body>
+        Paste the <script> tags
+-->
+
+<!-- ① In your HTML Embed element (where the globe should appear) -->
+<div id="past-missions" style="width: 100%; height: 100vh;"></div>
+
+<!-- ② Before </head> — Page Settings → Custom Code -->
+<link rel="stylesheet" href="YOUR_CDN_URL/past-missions.css">
+
+<!-- ③ Before </body> — Page Settings → Custom Code -->
+<script src="YOUR_CDN_URL/past-missions.iife.js"></script>
+<script>
+  AlbacoreGlobe.initPastMissions(
+    document.getElementById('past-missions'),
+    { assetsBase: 'YOUR_CDN_URL/' }
+  );
+</script>
